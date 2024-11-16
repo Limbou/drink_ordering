@@ -1,0 +1,7 @@
+name: drink_ordering
+
+packages:
+  - drink_ordering_app
+  - packages/**
+
+sdkPath: .fvm/flutter_sdk
