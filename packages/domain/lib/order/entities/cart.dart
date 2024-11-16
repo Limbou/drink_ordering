@@ -12,7 +12,7 @@ final class Cart {
 
   Money get total {
     if (entries.isEmpty) {
-      return Money.fromDouble(amount: 0, currency: const Currency.pln());
+      return Money.fromDouble(amount: 0);
     }
     return entries.fold(
       Money.fromDouble(amount: 0, currency: entries.first.product.price.currency),

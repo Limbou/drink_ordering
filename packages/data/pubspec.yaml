@@ -1,7 +1,8 @@
 name: data
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+
+publish_to: none # Remove this line if you wish to publish to pub.dev
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -10,11 +11,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  domain:
+    path: ../domain
+  collection: 1.18.0
+  injectable: 2.5.0
+  get_it: 8.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  injectable_generator: 2.6.2
+  build_runner: 2.4.13
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

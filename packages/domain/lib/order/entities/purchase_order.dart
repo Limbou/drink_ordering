@@ -1,11 +1,11 @@
 import 'package:domain/domain.dart';
 
-final class Order {
+final class PurchaseOrder {
   final Company company;
   final Cart cart;
   final Money? tip;
 
-  const Order({
+  const PurchaseOrder({
     required this.company,
     required this.cart,
     this.tip,
@@ -13,16 +13,16 @@ final class Order {
 
   Money get totalPrice => cart.total + tip;
 
-  Order addTip(Money tip) {
-    return Order(
+  PurchaseOrder addTip(Money tip) {
+    return PurchaseOrder(
       company: company,
       cart: cart,
       tip: tip,
     );
   }
 
-  Order cancelTip() {
-    return Order(
+  PurchaseOrder cancelTip() {
+    return PurchaseOrder(
       company: company,
       cart: cart,
       tip: null,

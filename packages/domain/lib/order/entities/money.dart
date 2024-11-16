@@ -11,7 +11,7 @@ final class Money {
 
   Money.fromDouble({
     required double amount,
-    required this.currency,
+    this.currency = const Currency.usd(),
   }) : amount = (amount * 100).toInt();
 
   String get displayable {

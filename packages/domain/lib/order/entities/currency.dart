@@ -13,4 +13,14 @@ final class Currency {
       : code = 'PLN',
         name = 'Polish Zloty',
         symbol = 'zł';
+
+  const Currency.eur()
+      : code = 'EUR',
+        name = 'Euro',
+        symbol = '€';
+
+  const Currency.usd()
+      : code = 'USD',
+        name = 'US Dollar',
+        symbol = '\$';
 }
