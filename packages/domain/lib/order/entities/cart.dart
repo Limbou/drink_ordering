@@ -1,7 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:domain/domain.dart';
+import 'package:equatable/equatable.dart';
 
-final class Cart {
+final class Cart extends Equatable {
   final List<CartEntry> entries;
 
   const Cart({
@@ -9,6 +10,9 @@ final class Cart {
   });
 
   const Cart.empty() : entries = const [];
+
+  @override
+  List<Object> get props => [entries];
 
   Money get total {
     if (entries.isEmpty) {
@@ -52,7 +56,7 @@ final class Cart {
   }
 }
 
-final class CartEntry {
+final class CartEntry extends Equatable {
   final Product product;
   final int quantity;
 
@@ -72,4 +76,7 @@ final class CartEntry {
   }
 
   Money get totalPrice => product.price * quantity;
+
+  @override
+  List<Object> get props => [product, quantity];
 }

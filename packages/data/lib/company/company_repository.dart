@@ -13,7 +13,7 @@ final class CompanyRepositoryImpl implements CompanyRepository {
       isOpen: true,
       rating: '4.9',
       numberOfRatings: 636,
-      logoUrl: '',
+      coverImageUrl: '',
       productsCategories: [
         ProductCategory(id: 'category1', name: 'Beer', imageUrl: ''),
         ProductCategory(id: 'category2', name: 'Cocktails', imageUrl: ''),

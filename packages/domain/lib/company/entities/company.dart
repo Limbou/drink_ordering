@@ -3,7 +3,7 @@ import 'package:domain/product/entities/product_category.dart';
 final class Company {
   final String id;
   final String name;
-  final String logoUrl;
+  final String coverImageUrl;
   final String rating;
   final int numberOfRatings;
   final String tags;
@@ -13,7 +13,7 @@ final class Company {
   const Company({
     required this.id,
     required this.name,
-    required this.logoUrl,
+    required this.coverImageUrl,
     required this.rating,
     required this.numberOfRatings,
     required this.tags,
@@ -28,7 +28,7 @@ final class Company {
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&
-          logoUrl == other.logoUrl &&
+          coverImageUrl == other.coverImageUrl &&
           rating == other.rating &&
           numberOfRatings == other.numberOfRatings &&
           tags == other.tags &&
@@ -39,7 +39,7 @@ final class Company {
   int get hashCode =>
       id.hashCode ^
       name.hashCode ^
-      logoUrl.hashCode ^
+      coverImageUrl.hashCode ^
       rating.hashCode ^
       numberOfRatings.hashCode ^
       tags.hashCode ^
