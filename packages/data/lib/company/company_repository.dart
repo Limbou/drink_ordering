@@ -15,10 +15,10 @@ final class CompanyRepositoryImpl implements CompanyRepository {
       numberOfRatings: 636,
       coverImageUrl: '',
       productsCategories: [
-        ProductCategory(id: 'category1', name: 'Beer', imageUrl: ''),
-        ProductCategory(id: 'category2', name: 'Cocktails', imageUrl: ''),
-        ProductCategory(id: 'category3', name: 'Wine', imageUrl: ''),
-        ProductCategory(id: 'category4', name: 'Liquor', imageUrl: ''),
+        ProductCategory(id: 'category1', name: 'Beer', iconData: 0xe047),
+        ProductCategory(id: 'category2', name: 'Cocktails', iconData: 0xe047),
+        ProductCategory(id: 'category3', name: 'Wine', iconData: 0xe047),
+        ProductCategory(id: 'category4', name: 'Liquor', iconData: 0xe047),
       ],
     );
   }

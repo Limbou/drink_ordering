@@ -1,31 +1,32 @@
 import 'package:domain/domain.dart';
 
 final class PurchaseOrder {
-  final Company company;
   final Cart cart;
+  final Company? company;
   final Money? tip;
 
   const PurchaseOrder({
-    required this.company,
     required this.cart,
+    this.company,
     this.tip,
   });
 
+  const PurchaseOrder.empty()
+      : cart = const Cart.empty(),
+        company = null,
+        tip = null;
+
   Money get totalPrice => cart.total + tip;
 
-  PurchaseOrder addTip(Money tip) {
+  PurchaseOrder copyWith({
+    Cart? cart,
+    Company? company,
+    Money? Function()? tip,
+  }) {
     return PurchaseOrder(
-      company: company,
-      cart: cart,
-      tip: tip,
-    );
-  }
-
-  PurchaseOrder cancelTip() {
-    return PurchaseOrder(
-      company: company,
-      cart: cart,
-      tip: null,
+      cart: cart ?? this.cart,
+      company: company ?? this.company,
+      tip: tip?.call() ?? this.tip,
     );
   }
 }

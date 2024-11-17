@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
+import 'package:equatable/equatable.dart';
 
-final class Product {
+final class Product extends Equatable {
   final String id;
   final String name;
   final Money price;
@@ -18,18 +19,5 @@ final class Product {
   });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Product &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          price == other.price &&
-          alcoholPercentage == other.alcoholPercentage &&
-          volume == other.volume &&
-          imageUrl == other.imageUrl;
-
-  @override
-  int get hashCode =>
-      id.hashCode ^ name.hashCode ^ price.hashCode ^ alcoholPercentage.hashCode ^ volume.hashCode ^ imageUrl.hashCode;
+  List<Object> get props => [id, name, price, alcoholPercentage, volume, imageUrl];
 }

@@ -1,23 +1,16 @@
-final class ProductCategory {
+import 'package:equatable/equatable.dart';
+
+final class ProductCategory extends Equatable {
   final String id;
   final String name;
-  final String imageUrl;
+  final int iconData;
 
   const ProductCategory({
     required this.id,
     required this.name,
-    required this.imageUrl,
+    required this.iconData,
   });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProductCategory &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          imageUrl == other.imageUrl;
-
-  @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ imageUrl.hashCode;
+  List<Object> get props => [id, name, iconData];
 }

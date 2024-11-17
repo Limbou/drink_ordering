@@ -1,4 +1,4 @@
-final class Currency {
+abstract base class Currency {
   final String code;
   final String name;
   final String symbol;
@@ -9,18 +9,32 @@ final class Currency {
     required this.symbol,
   });
 
-  const Currency.pln()
-      : code = 'PLN',
-        name = 'Polish Zloty',
-        symbol = 'zł';
+  String format(String amount);
+}
 
-  const Currency.eur()
-      : code = 'EUR',
-        name = 'Euro',
-        symbol = '€';
+final class CurrencyUsd extends Currency {
+  const CurrencyUsd() : super(code: 'USD', name: 'US Dollar', symbol: '\$');
 
-  const Currency.usd()
-      : code = 'USD',
-        name = 'US Dollar',
-        symbol = '\$';
+  @override
+  String format(String amount) {
+    return '$symbol $amount';
+  }
+}
+
+final class CurrencyEur extends Currency {
+  const CurrencyEur() : super(code: 'EUR', name: 'Euro', symbol: '€');
+
+  @override
+  String format(String amount) {
+    return '$symbol$amount';
+  }
+}
+
+final class CurrencyPln extends Currency {
+  const CurrencyPln() : super(code: 'PLN', name: 'Polish Zloty', symbol: 'zł');
+
+  @override
+  String format(String amount) {
+    return '$amount $symbol';
+  }
 }

@@ -1,21 +1,22 @@
-import 'package:collection/collection.dart';
 import 'package:domain/domain.dart';
 import 'package:equatable/equatable.dart';
 
 final class Cart extends Equatable {
-  final List<CartEntry> entries;
+  final Map<String, CartEntry> _entriesMap;
 
-  const Cart({
-    required this.entries,
-  });
+  const Cart._(this._entriesMap);
 
-  const Cart.empty() : entries = const [];
+  const Cart.empty() : _entriesMap = const {};
 
   @override
-  List<Object> get props => [entries];
+  List<Object> get props => [_entriesMap];
+
+  List<CartEntry> get entries => _entriesMap.values.toList();
+
+  bool get isEmpty => _entriesMap.isEmpty;
 
   Money get total {
-    if (entries.isEmpty) {
+    if (_entriesMap.isEmpty) {
       return Money.fromDouble(amount: 0);
     }
     return entries.fold(
@@ -25,34 +26,34 @@ final class Cart extends Equatable {
   }
 
   Cart addProduct(Product product) {
-    final existingEntry = entries.firstWhereOrNull((entry) => entry.product == product);
-    if (existingEntry != null) {
-      final updatedEntry = existingEntry.increment();
-      return Cart(entries: [
-        ...entries.where((entry) => entry != existingEntry),
-        updatedEntry,
-      ]);
-    }
-    return Cart(entries: [...entries, CartEntry.newEntry(product: product)]);
+    final entries = Map<String, CartEntry>.from(_entriesMap);
+    entries.update(product.id, (entry) => entry.increment(), ifAbsent: () => CartEntry.newEntry(product: product));
+    return Cart._(entries);
   }
 
   Cart removeSingleProduct(String productId) {
-    final product = entries.firstWhereOrNull((entry) => entry.product.id == productId);
-    if (product == null) {
+    final entries = Map<String, CartEntry>.from(_entriesMap);
+    final entry = entries[productId];
+    if (entry == null) {
       return this;
     }
-    if (product.quantity == 1) {
-      return Cart(entries: entries.where((entry) => entry != product).toList());
+    if (entry.quantity == 1) {
+      entries.remove(productId);
+    } else {
+      entries[productId] = entry.decrement();
     }
-    final updatedProduct = product.decrement();
-    return Cart(entries: [
-      ...entries.where((entry) => entry != product),
-      updatedProduct,
-    ]);
+    return Cart._(entries);
   }
 
   Cart removeProduct(String productId) {
-    return Cart(entries: entries.where((entry) => entry.product.id != productId).toList());
+    final entries = Map<String, CartEntry>.from(_entriesMap);
+    entries.remove(productId);
+    return Cart._(entries);
+  }
+
+  int getQuantity(String productId) {
+    final entry = _entriesMap[productId];
+    return entry?.quantity ?? 0;
   }
 }
 

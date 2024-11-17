@@ -11,12 +11,12 @@ final class Money {
 
   Money.fromDouble({
     required double amount,
-    this.currency = const Currency.usd(),
+    this.currency = const CurrencyUsd(),
   }) : amount = (amount * 100).toInt();
 
   String get displayable {
     final amountString = (amount / 100).toStringAsFixed(2);
-    return '$amountString ${currency.symbol}';
+    return currency.format(amountString);
   }
 
   Money operator +(Money? other) {
