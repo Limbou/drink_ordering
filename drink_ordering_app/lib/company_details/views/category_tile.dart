@@ -11,7 +11,7 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onTap,
+      onTap: onTap,
       child: Card(
         elevation: 0,
         color: AppColors.grey5050,

@@ -8,7 +8,7 @@ final class CompanyRepositoryImpl implements CompanyRepository {
     await Future.delayed(const Duration(seconds: 1));
     return const Company(
       id: 'company1',
-      name: "Pepito's Bar",
+      name: "Pepito's Pub",
       tags: 'Bar, Craft beer',
       isOpen: true,
       rating: '4.9',

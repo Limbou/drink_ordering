@@ -8,9 +8,11 @@ class AppBarButton extends StatelessWidget {
     required this.icon,
     required this.onTap,
     this.badgeCount,
+    this.border,
   });
 
   final Color backgroundColor;
+  final Border? border;
   final Widget icon;
   final VoidCallback onTap;
   final int? badgeCount;
@@ -34,6 +36,7 @@ class AppBarButton extends StatelessWidget {
             decoration: BoxDecoration(
               color: backgroundColor,
               shape: BoxShape.circle,
+              border: border,
             ),
             child: Center(child: icon),
           ),

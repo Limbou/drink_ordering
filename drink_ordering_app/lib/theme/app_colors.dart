@@ -15,13 +15,13 @@ final class AppColors {
 }
 
 final class AppGradients {
-  static Gradient greyMainGradient = LinearGradient(
-    colors: [
-      AppColors.grey3333.withOpacity(0.01),
-      AppColors.grey3333,
-    ],
-    stops: const [0, 0.45],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
+  static Gradient greyMainGradient(double startFraction) => LinearGradient(
+        colors: [
+          AppColors.grey3333.withOpacity(0.01),
+          AppColors.grey3333,
+        ],
+        stops: [0, startFraction],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
 }

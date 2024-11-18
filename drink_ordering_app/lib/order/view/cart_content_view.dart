@@ -1,4 +1,6 @@
 import 'package:drink_ordering_app/order/cubit/index.dart';
+import 'package:drink_ordering_app/order/view/cart_entry_tile.dart';
+import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,45 +11,30 @@ class CartContentView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverMainAxisGroup(
       slivers: [
-        const SliverToBoxAdapter(
-          child: Text('Bag'),
+        const SliverPadding(
+          padding: EdgeInsets.only(bottom: 16),
+          sliver: SliverToBoxAdapter(
+            child: Text(
+              'BAG',
+              style: TextStyle(
+                color: AppColors.grey9999,
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
         ),
         BlocBuilder<OrderCubit, OrderState>(
           builder: (context, state) {
             final cart = state.cart;
             if (cart.isEmpty) return const Center(child: Text('Cart is empty'));
 
-            return SliverList.separated(
+            return SliverList.builder(
               itemCount: cart.entries.length,
               itemBuilder: (context, index) {
                 final entry = cart.entries[index];
-                return ListTile(
-                  title: Text(entry.product.name),
-                  subtitle: Column(
-                    children: [
-                      Text(entry.totalPrice.displayable),
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: () => context.read<OrderCubit>().decrementItem(entry.product.id),
-                            icon: const Icon(Icons.remove),
-                          ),
-                          Text(entry.quantity.toString()),
-                          IconButton(
-                            onPressed: () => context.read<OrderCubit>().addItem(entry.product),
-                            icon: const Icon(Icons.add),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  trailing: IconButton(
-                    onPressed: () => context.read<OrderCubit>().removeItem(entry.product.id),
-                    icon: const Icon(Icons.remove),
-                  ),
-                );
+                return CartEntryTile(cartEntry: entry);
               },
-              separatorBuilder: (_, __) => const Divider(),
             );
           },
         ),

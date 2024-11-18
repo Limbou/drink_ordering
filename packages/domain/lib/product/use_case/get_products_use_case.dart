@@ -9,12 +9,12 @@ final class GetProductsUseCase {
 
   Future<List<Product>> call({
     required String companyId,
-    required String categoryId,
+    required String categoryName,
     int? page,
   }) {
     return _productsRepository.getProducts(
       companyId: companyId,
-      categoryId: categoryId,
+      categoryName: categoryName,
       page: page,
     );
   }

@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 @LazySingleton(as: ProductsRepository)
 final class ProductRepositoryImpl implements ProductsRepository {
   @override
-  Future<List<Product>> getProducts({required String companyId, required String categoryId, int? page = 0}) async {
+  Future<List<Product>> getProducts({required String companyId, required String categoryName, int? page = 0}) async {
     await Future.delayed(const Duration(seconds: 1));
 
     return [

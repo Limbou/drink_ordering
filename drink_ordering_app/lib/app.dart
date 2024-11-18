@@ -14,7 +14,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (_) => getIt<OrderCubit>()),
       ],
       child: MaterialApp.router(
-        title: 'Flutter Demo',
+        title: 'Drink Ordering',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,

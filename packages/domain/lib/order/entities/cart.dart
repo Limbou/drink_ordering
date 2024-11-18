@@ -25,6 +25,8 @@ final class Cart extends Equatable {
     );
   }
 
+  Duration? get estimatedCompletionTime => entries.isEmpty ? null : Duration(minutes: entries.length * 5);
+
   Cart addProduct(Product product) {
     final entries = Map<String, CartEntry>.from(_entriesMap);
     entries.update(product.id, (entry) => entry.increment(), ifAbsent: () => CartEntry.newEntry(product: product));
