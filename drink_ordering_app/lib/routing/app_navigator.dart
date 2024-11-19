@@ -8,10 +8,10 @@ final class AppNavigator {
 
   static void goToProductsPage(
     BuildContext context, {
-    required String companyId,
+    required String companyName,
     required String categoryName,
   }) {
-    ProductsRoute(companyId: companyId, categoryName: categoryName).push(context);
+    ProductsRoute(companyName: companyName, categoryName: categoryName).push(context);
   }
 
   static void goToOrderCartPage(BuildContext context) {

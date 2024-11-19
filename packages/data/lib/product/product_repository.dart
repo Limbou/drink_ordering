@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 @LazySingleton(as: ProductsRepository)
 final class ProductRepositoryImpl implements ProductsRepository {
   @override
-  Future<List<Product>> getProducts({required String companyId, required String categoryName, int? page = 0}) async {
+  Future<List<Product>> getProducts({required String companyName, required String categoryName, int? page = 0}) async {
     await Future.delayed(const Duration(seconds: 1));
 
     return [
@@ -22,7 +22,7 @@ final class ProductRepositoryImpl implements ProductsRepository {
       price: Money.fromDouble(amount: 5.99),
       alcoholPercentage: '4,5%',
       volume: '0,5l',
-      imageUrl: '',
+      imageName: 'diggles.jpeg',
     ),
     Product(
       id: 'product2',
@@ -30,7 +30,7 @@ final class ProductRepositoryImpl implements ProductsRepository {
       price: Money.fromDouble(amount: 4.99),
       alcoholPercentage: '4,2%',
       volume: '0,4l',
-      imageUrl: '',
+      imageName: 'boiler.jpeg',
     ),
     Product(
       id: 'product3',
@@ -38,7 +38,7 @@ final class ProductRepositoryImpl implements ProductsRepository {
       price: Money.fromDouble(amount: 3.99),
       alcoholPercentage: '4,5%',
       volume: '0,5l',
-      imageUrl: '',
+      imageName: 'dainton.png',
     ),
     Product(
       id: 'product4',
@@ -46,7 +46,7 @@ final class ProductRepositoryImpl implements ProductsRepository {
       price: Money.fromDouble(amount: 4.99),
       alcoholPercentage: '4,2%',
       volume: '0,4l',
-      imageUrl: '',
+      imageName: 'brayonne.png',
     ),
     Product(
       id: 'product5',
@@ -54,7 +54,7 @@ final class ProductRepositoryImpl implements ProductsRepository {
       price: Money.fromDouble(amount: 4.99),
       alcoholPercentage: '4,2%',
       volume: '0,4l',
-      imageUrl: '',
+      imageName: 'angels.jpeg',
     ),
   ];
 }

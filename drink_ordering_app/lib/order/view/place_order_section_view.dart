@@ -41,23 +41,27 @@ class PlaceOrderSectionView extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () => context.read<OrderCubit>().placeOrder(),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.orangeFFAE,
-                    foregroundColor: AppColors.whiteEEF1,
-                    textStyle: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                const SizedBox(height: 24),
+                BlocBuilder<OrderCubit, OrderState>(
+                  builder: (context, state) => ElevatedButton(
+                    onPressed: state.cart.isEmpty ? null : () => context.read<OrderCubit>().placeOrder(),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.orangeFFAE,
+                      foregroundColor: AppColors.whiteEEF1,
+                      disabledBackgroundColor: AppColors.grey5050,
+                      disabledForegroundColor: AppColors.grey9999,
+                      textStyle: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      minimumSize: const Size.fromHeight(60),
+                      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    minimumSize: const Size.fromHeight(60),
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    child: const Text('Place Order'),
                   ),
-                  child: const Text('Place Order'),
                 ),
               ],
             ),

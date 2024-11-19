@@ -22,14 +22,18 @@ class CategoryTile extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                IconData(category.iconData, fontFamily: 'MaterialIcons'),
-                color: AppColors.whiteEEF1,
+              Text(
+                category.icon,
+                style: const TextStyle(fontSize: 32),
               ),
               const SizedBox(height: 16),
               Text(
                 category.name,
-                style: const TextStyle(color: AppColors.whiteEEF1),
+                style: const TextStyle(
+                  color: AppColors.whiteEEF1,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),

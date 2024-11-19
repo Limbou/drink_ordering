@@ -40,4 +40,8 @@ final class Money {
   Money operator *(int multiplier) {
     return Money._(amount: amount * multiplier, currency: currency);
   }
+
+  Money fraction(double fraction) {
+    return Money._(amount: (amount * fraction).toInt(), currency: currency);
+  }
 }

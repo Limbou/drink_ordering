@@ -9,10 +9,10 @@ final class ProductsCubit extends Cubit<ProductsState> {
 
   final GetProductsUseCase _getProductsUseCase;
 
-  Future<void> init({required String companyId, required String categoryName}) async {
+  Future<void> init({required String companyName, required String categoryName}) async {
     emit(ProductsStateLoading());
     try {
-      final products = await _getProductsUseCase(companyId: 'company1', categoryName: categoryName);
+      final products = await _getProductsUseCase(companyName: companyName, categoryName: categoryName);
       emit(ProductsStateLoaded(products));
     } catch (e) {
       emit(ProductsStateError(e.toString()));

@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:drink_ordering_app/common/extensions/product_image_path_extension.dart';
 import 'package:drink_ordering_app/order/cubit/index.dart';
 import 'package:drink_ordering_app/order/widgets/quantity_selector.dart';
 import 'package:drink_ordering_app/theme/app_colors.dart';
@@ -66,12 +67,14 @@ class _QuantityAndPrice extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           QuantitySelector(cartEntry: cartEntry),
-          Text(cartEntry.totalPrice.displayable,
-              style: const TextStyle(
-                color: AppColors.orangeF5A6,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              )),
+          Text(
+            cartEntry.totalPrice.displayable,
+            style: const TextStyle(
+              color: AppColors.orangeF5A6,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ],
       ),
     );
@@ -85,11 +88,14 @@ class _ProductImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.square(
-      dimension: 45,
-      child: Placeholder(
-        fallbackHeight: 45,
-        fallbackWidth: 45,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(4),
+      child: SizedBox.square(
+        dimension: 45,
+        child: Image.asset(
+          cartEntry.product.imagePath,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

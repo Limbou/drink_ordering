@@ -3,7 +3,7 @@ import 'package:domain/domain.dart';
 final class PurchaseOrder {
   final Cart cart;
   final Company? company;
-  final Money? tip;
+  final Tip? tip;
 
   const PurchaseOrder({
     required this.cart,
@@ -16,12 +16,12 @@ final class PurchaseOrder {
         company = null,
         tip = null;
 
-  Money get totalPrice => cart.total + tip;
+  Money get totalPrice => cart.total + (cart.total.fraction(tip?.value ?? 0.0));
 
   PurchaseOrder copyWith({
     Cart? cart,
     Company? company,
-    Money? Function()? tip,
+    Tip? Function()? tip,
   }) {
     return PurchaseOrder(
       cart: cart ?? this.cart,

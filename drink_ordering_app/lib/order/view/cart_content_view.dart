@@ -27,7 +27,16 @@ class CartContentView extends StatelessWidget {
         BlocBuilder<OrderCubit, OrderState>(
           builder: (context, state) {
             final cart = state.cart;
-            if (cart.isEmpty) return const Center(child: Text('Cart is empty'));
+            if (cart.isEmpty) {
+              return const SliverToBoxAdapter(
+                child: Center(
+                  child: Text(
+                    'Cart is empty',
+                    style: TextStyle(color: AppColors.whiteEEF1, fontSize: 24),
+                  ),
+                ),
+              );
+            }
 
             return SliverList.builder(
               itemCount: cart.entries.length,

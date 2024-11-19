@@ -14,4 +14,5 @@ void _setupSystemUiOverlayStyle() {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(systemNavigationBarColor: Colors.transparent),
   );
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 }

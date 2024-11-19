@@ -9,7 +9,7 @@ sealed class OrderState {
 
   Company? get company => order.company;
 
-  Money? get tip => order.tip;
+  Tip? get tip => order.tip;
 }
 
 final class OrderStateInitial extends OrderState {

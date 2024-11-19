@@ -9,6 +9,7 @@ class AppScaffold extends StatelessWidget {
     this.appBar,
     this.gradientStartFraction = 0.45,
     this.backgroundColor,
+    this.title,
     super.key,
   });
 
@@ -17,11 +18,12 @@ class AppScaffold extends StatelessWidget {
   final PreferredSizeWidget? appBar;
   final double gradientStartFraction;
   final Color? backgroundColor;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar ?? const CartAppBar(),
+      appBar: appBar ?? CartAppBar(title: title),
       backgroundColor: backgroundColor,
       extendBodyBehindAppBar: true,
       body: Stack(

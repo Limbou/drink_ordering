@@ -11,19 +11,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({
-    required this.companyId,
+    required this.companyName,
     required this.categoryName,
     super.key,
   });
 
-  final String companyId;
+  final String companyName;
   final String categoryName;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<ProductsCubit>()..init(companyId: companyId, categoryName: categoryName),
+      create: (_) => getIt<ProductsCubit>()..init(companyName: companyName, categoryName: categoryName),
       child: AppScaffold(
+        title: companyName,
         gradientStartFraction: 0.2,
         background: Image.asset(AppAssets.barBackground),
         body: BlocConsumer<ProductsCubit, ProductsState>(

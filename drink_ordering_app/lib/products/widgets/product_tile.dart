@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:drink_ordering_app/common/extensions/product_image_path_extension.dart';
 import 'package:drink_ordering_app/order/cubit/index.dart';
 import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +33,14 @@ class _ProductImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.square(
-      dimension: 82,
-      child: Placeholder(
-        fallbackHeight: 80,
-        fallbackWidth: 80,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(4),
+      child: SizedBox.square(
+        dimension: 82,
+        child: Image.asset(
+          product.imagePath,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

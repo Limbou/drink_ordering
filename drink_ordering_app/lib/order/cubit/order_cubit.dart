@@ -43,7 +43,7 @@ final class OrderCubit extends Cubit<OrderState> {
     );
   }
 
-  void setTip(Money? tip) {
+  void setTip(Tip? tip) {
     emit(OrderStateInitial(state.order.copyWith(tip: () => tip)));
   }
 

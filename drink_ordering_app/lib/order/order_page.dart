@@ -23,10 +23,6 @@ class OrderPage extends StatelessWidget {
               sliver: OrderingFromSectionView(),
             ),
             CartContentView(),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              sliver: TipSectionView(),
-            ),
             PlaceOrderSectionView(),
           ],
         ),

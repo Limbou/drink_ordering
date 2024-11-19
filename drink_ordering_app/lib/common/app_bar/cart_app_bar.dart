@@ -31,7 +31,17 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 onTap: () => AppNavigator.pop(context),
               ),
-            Expanded(child: Text(title ?? '')),
+            Expanded(
+              child: Text(
+                title ?? '',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: AppColors.whiteEEF1,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
             AppBarButton(
               backgroundColor: AppColors.orangeFFAE,
               icon: const Icon(

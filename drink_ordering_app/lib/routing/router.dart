@@ -24,16 +24,16 @@ final class CompanyDetailsRoute extends GoRouteData {
 
 final class ProductsRoute extends GoRouteData {
   const ProductsRoute({
-    required this.companyId,
+    required this.companyName,
     required this.categoryName,
   });
 
-  final String companyId;
+  final String companyName;
   final String categoryName;
 
   @override
   Widget build(BuildContext context, GoRouterState state) => ProductsPage(
-        companyId: companyId,
+        companyName: companyName,
         categoryName: categoryName,
       );
 }

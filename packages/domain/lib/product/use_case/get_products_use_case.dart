@@ -8,12 +8,12 @@ final class GetProductsUseCase {
   GetProductsUseCase(this._productsRepository);
 
   Future<List<Product>> call({
-    required String companyId,
+    required String companyName,
     required String categoryName,
     int? page,
   }) {
     return _productsRepository.getProducts(
-      companyId: companyId,
+      companyName: companyName,
       categoryName: categoryName,
       page: page,
     );

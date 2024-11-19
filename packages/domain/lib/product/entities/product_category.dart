@@ -3,14 +3,14 @@ import 'package:equatable/equatable.dart';
 final class ProductCategory extends Equatable {
   final String id;
   final String name;
-  final int iconData;
+  final String icon;
 
   const ProductCategory({
     required this.id,
     required this.name,
-    required this.iconData,
+    required this.icon,
   });
 
   @override
-  List<Object> get props => [id, name, iconData];
+  List<Object> get props => [id, name, icon];
 }

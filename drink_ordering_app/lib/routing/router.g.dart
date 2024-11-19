@@ -42,14 +42,14 @@ extension $CompanyDetailsRouteExtension on CompanyDetailsRoute {
 
 extension $ProductsRouteExtension on ProductsRoute {
   static ProductsRoute _fromState(GoRouterState state) => ProductsRoute(
-        companyId: state.uri.queryParameters['company-id']!,
+        companyName: state.uri.queryParameters['company-name']!,
         categoryName: state.uri.queryParameters['category-name']!,
       );
 
   String get location => GoRouteData.$location(
         '/products',
         queryParams: {
-          'company-id': companyId,
+          'company-name': companyName,
           'category-name': categoryName,
         },
       );

@@ -51,8 +51,11 @@ class CompanyOrderTabView extends StatelessWidget {
                   final category = state.company.productsCategories[index];
                   return CategoryTile(
                     category: category,
-                    onTap: () => AppNavigator.goToProductsPage(context,
-                        companyId: state.company.id, categoryName: category.name),
+                    onTap: () => AppNavigator.goToProductsPage(
+                      context,
+                      companyName: state.company.name,
+                      categoryName: category.name,
+                    ),
                   );
                 },
               ),
