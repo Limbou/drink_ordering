@@ -101,7 +101,7 @@ class _ProductsList extends StatelessWidget {
             itemCount: products.length,
             itemBuilder: (context, index) {
               final product = products[index];
-              return ProductTile(product: product);
+              return ProductTile(key: Key(product.id), product: product);
             },
             separatorBuilder: (_, __) => const SizedBox(height: 32),
           ),

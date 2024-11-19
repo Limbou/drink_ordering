@@ -1,5 +1,6 @@
 import 'package:drink_ordering_app/company_details/company_details_page.dart';
 import 'package:drink_ordering_app/order/order_page.dart';
+import 'package:drink_ordering_app/order/order_page_transition.dart';
 import 'package:drink_ordering_app/products/index.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -43,5 +44,14 @@ final class OrderRoute extends GoRouteData {
   const OrderRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const OrderPage();
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return CustomTransitionPage(
+      transitionDuration: const Duration(seconds: 1),
+      reverseTransitionDuration: const Duration(milliseconds: 700),
+      child: const OrderPage(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return OrderPageTransition(animation: animation, child: child);
+      },
+    );
+  }
 }
