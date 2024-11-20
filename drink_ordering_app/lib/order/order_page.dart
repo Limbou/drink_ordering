@@ -1,7 +1,6 @@
 import 'package:drink_ordering_app/common/widgets/app_scaffold.dart';
 import 'package:drink_ordering_app/order/index.dart';
 import 'package:drink_ordering_app/order/view/index.dart';
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class OrderPage extends StatelessWidget {
@@ -11,10 +10,10 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppScaffold(
-      backgroundColor: AppColors.grey3333,
-      appBar: MyOrderAppBar(),
-      body: Padding(
+    return AppScaffold(
+      backgroundColor: Theme.of(context).colorScheme.secondary,
+      appBar: const MyOrderAppBar(),
+      body: const Padding(
         padding: EdgeInsets.only(left: 16),
         child: CustomScrollView(
           slivers: [

@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:drink_ordering_app/company_details/views/company_ratings_and_tags_section_view.dart';
+import 'package:drink_ordering_app/l10n/translations.dart';
 import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -34,11 +35,11 @@ class _OpenNowView extends StatelessWidget {
         color: AppColors.greenDark,
         borderRadius: BorderRadius.circular(6),
       ),
-      child: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         child: Text(
-          'OPEN NOW',
-          style: TextStyle(color: AppColors.greenLight),
+          Translations.of(context).company_open_now.toUpperCase(),
+          style: const TextStyle(color: AppColors.greenLight),
         ),
       ),
     );
@@ -54,11 +55,7 @@ class _CompanyName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       companyName,
-      style: const TextStyle(
-        fontSize: 36,
-        color: AppColors.whiteEEF1,
-        fontWeight: FontWeight.w600,
-      ),
+      style: Theme.of(context).textTheme.headlineLarge,
     );
   }
 }

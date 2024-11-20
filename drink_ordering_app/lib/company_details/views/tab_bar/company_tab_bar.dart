@@ -1,4 +1,4 @@
-import 'package:drink_ordering_app/theme/app_colors.dart';
+import 'package:drink_ordering_app/l10n/translations.dart';
 import 'package:flutter/material.dart';
 
 enum CompanyDetailsTab {
@@ -21,29 +21,25 @@ class CompanyTabBar extends StatelessWidget {
       length: CompanyDetailsTab.values.length,
       child: Column(
         children: [
-          const TabBar(
+          TabBar(
             indicator: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: AppColors.whiteEEF1,
+                  color: Theme.of(context).colorScheme.onPrimary,
                   width: 1,
                 ),
               ),
             ),
-            labelStyle: TextStyle(
-              color: AppColors.whiteEEF1,
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-            ),
-            labelPadding: EdgeInsets.only(top: 6, bottom: 6, right: 32),
-            unselectedLabelColor: AppColors.grey9999,
-            dividerColor: AppColors.grey5050,
+            labelStyle: Theme.of(context).textTheme.headlineMedium,
+            labelPadding: const EdgeInsets.only(top: 6, bottom: 6, right: 32),
+            unselectedLabelColor: Theme.of(context).colorScheme.surface,
+            dividerColor: Theme.of(context).colorScheme.primary,
             isScrollable: true,
             tabAlignment: TabAlignment.start,
             tabs: [
-              Tab(text: 'Order'),
-              Tab(text: 'Info'),
-              Tab(text: 'Locations'),
+              Tab(text: Translations.of(context).company_tab_bar_order),
+              Tab(text: Translations.of(context).company_tab_bar_info),
+              Tab(text: Translations.of(context).company_tab_bar_location),
             ],
           ),
           Expanded(
@@ -64,10 +60,10 @@ class _ComingSoonTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Text(
-        'COMING SOON!',
-        style: TextStyle(color: AppColors.whiteEEF1, fontSize: 24),
+        Translations.of(context).company_tab_bar_coming_soon.toUpperCase(),
+        style: Theme.of(context).textTheme.headlineLarge,
       ),
     );
   }

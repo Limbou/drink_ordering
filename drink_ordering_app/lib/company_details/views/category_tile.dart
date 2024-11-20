@@ -1,5 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CategoryTile extends StatelessWidget {
@@ -14,7 +13,7 @@ class CategoryTile extends StatelessWidget {
       onTap: onTap,
       child: Card(
         elevation: 0,
-        color: AppColors.grey5050,
+        color: Theme.of(context).colorScheme.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
@@ -29,11 +28,7 @@ class CategoryTile extends StatelessWidget {
               const SizedBox(height: 16),
               Text(
                 category.name,
-                style: const TextStyle(
-                  color: AppColors.whiteEEF1,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(context).textTheme.labelMedium,
               ),
             ],
           ),

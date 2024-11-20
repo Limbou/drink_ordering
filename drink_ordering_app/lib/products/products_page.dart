@@ -6,7 +6,6 @@ import 'package:drink_ordering_app/order/index.dart';
 import 'package:drink_ordering_app/products/index.dart';
 import 'package:drink_ordering_app/products/widgets/product_tile.dart';
 import 'package:drink_ordering_app/theme/app_assets.dart';
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -100,10 +99,7 @@ class _ProductsList extends StatelessWidget {
             children: [
               Text(
                 categoryName,
-                style: const TextStyle(
-                  fontSize: 42,
-                  color: AppColors.whiteEEF1,
-                ),
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 16),

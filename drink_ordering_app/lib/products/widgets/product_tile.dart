@@ -1,7 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:drink_ordering_app/common/extensions/product_image_path_extension.dart';
 import 'package:drink_ordering_app/order/cubit/index.dart';
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -58,40 +57,24 @@ class _ProductDetails extends StatelessWidget {
       children: [
         Text(
           product.name,
-          style: const TextStyle(
-            color: AppColors.whiteEEF1,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 8),
         Text(
           product.price.displayable,
-          style: const TextStyle(
-            color: AppColors.orangeFFCC,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.displayMedium,
         ),
         const SizedBox(height: 8),
         Row(
           children: [
             Text(
               product.alcoholPercentage,
-              style: const TextStyle(
-                color: AppColors.whiteEEF1,
-                fontSize: 13,
-                fontWeight: FontWeight.w300,
-              ),
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             const SizedBox(width: 8),
             Text(
               product.volume,
-              style: const TextStyle(
-                color: AppColors.whiteEEF1,
-                fontSize: 13,
-                fontWeight: FontWeight.w300,
-              ),
+              style: Theme.of(context).textTheme.displaySmall,
             ),
           ],
         )
@@ -113,22 +96,22 @@ class _AddToCartButton extends StatelessWidget {
     return InkWell(
       onTap: () => context.read<OrderCubit>().addItem(product),
       child: Badge.count(
-        backgroundColor: AppColors.white,
-        textColor: AppColors.grey3333,
-        padding: const EdgeInsets.all(4),
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        textStyle: Theme.of(context).textTheme.titleSmall,
+        padding: const EdgeInsets.all(2),
         offset: const Offset(-4, -2),
         count: productQuantity,
         isLabelVisible: productQuantity > 0,
         child: DecoratedBox(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(color: AppColors.grey5050, width: 1),
+            border: Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
           ),
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Icon(
               Icons.add_rounded,
-              color: AppColors.orangeFFAE,
+              color: Theme.of(context).colorScheme.onSecondaryFixed,
               size: 32,
             ),
           ),

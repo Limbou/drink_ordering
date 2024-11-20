@@ -1,7 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:drink_ordering_app/common/app_bar/index.dart';
 import 'package:drink_ordering_app/order/cubit/index.dart';
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,29 +15,25 @@ class QuantitySelector extends StatelessWidget {
       children: [
         AppBarButton(
           backgroundColor: Colors.transparent,
-          border: Border.all(color: AppColors.grey5050, width: 1),
-          icon: const Icon(
+          border: Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
+          icon: Icon(
             Icons.remove_rounded,
-            color: AppColors.orangeF5A6,
+            color: Theme.of(context).colorScheme.onSecondary,
           ),
           onTap: () => context.read<OrderCubit>().decrementItem(cartEntry.product.id),
         ),
         const SizedBox(width: 16),
         Text(
           cartEntry.quantity.toString(),
-          style: const TextStyle(
-            color: AppColors.whiteEEF1,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(width: 16),
         AppBarButton(
           backgroundColor: Colors.transparent,
-          border: Border.all(color: AppColors.grey5050, width: 1),
-          icon: const Icon(
+          border: Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
+          icon: Icon(
             Icons.add_rounded,
-            color: AppColors.orangeF5A6,
+            color: Theme.of(context).colorScheme.onSecondary,
           ),
           onTap: () => context.read<OrderCubit>().addItem(cartEntry.product),
         ),

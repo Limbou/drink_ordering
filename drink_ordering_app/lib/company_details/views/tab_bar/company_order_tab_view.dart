@@ -1,8 +1,8 @@
 import 'package:drink_ordering_app/company_details/company_details_cubit.dart';
 import 'package:drink_ordering_app/company_details/company_details_state.dart';
 import 'package:drink_ordering_app/company_details/views/category_tile.dart';
+import 'package:drink_ordering_app/l10n/translations.dart';
 import 'package:drink_ordering_app/routing/app_navigator.dart';
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,16 +19,12 @@ class CompanyOrderTabView extends StatelessWidget {
 
         return CustomScrollView(
           slivers: [
-            const SliverPadding(
-              padding: EdgeInsets.only(top: 32),
+            SliverPadding(
+              padding: const EdgeInsets.only(top: 32),
               sliver: SliverToBoxAdapter(
                 child: Text(
-                  'MENU',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: AppColors.grey9999,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  Translations.of(context).company_menu.toUpperCase(),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
             ),
@@ -75,25 +71,22 @@ class _OrderSearchBar extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: AppColors.grey5050, width: 1),
+        border: Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
       ),
-      child: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Row(
           children: [
             Icon(
               Icons.search_rounded,
-              color: AppColors.whiteEEF1,
+              color: Theme.of(context).colorScheme.onPrimary,
               size: 36,
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Expanded(
               child: Text(
-                'What are you looking for?',
-                style: TextStyle(
-                  color: AppColors.grey9999,
-                  fontSize: 16,
-                ),
+                Translations.of(context).company_search_hint,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
           ],

@@ -1,6 +1,6 @@
 import 'package:drink_ordering_app/company_details/views/company_ratings_and_tags_section_view.dart';
+import 'package:drink_ordering_app/l10n/translations.dart';
 import 'package:drink_ordering_app/order/cubit/index.dart';
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,22 +18,14 @@ class OrderingFromSectionView extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'ORDERING FROM',
-                style: TextStyle(
-                  color: AppColors.grey9999,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                ),
+              Text(
+                Translations.of(context).order_ordering_from.toUpperCase(),
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               const SizedBox(height: 16),
               Text(
                 company.name,
-                style: const TextStyle(
-                  color: AppColors.whiteEEF1,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: Theme.of(context).textTheme.displayLarge,
               ),
               const SizedBox(height: 8),
               RatingsAndTagsSectionView(company: company),
@@ -48,7 +40,7 @@ class OrderingFromSectionView extends StatelessWidget {
 }
 
 class _EstimatedCompletionTime extends StatelessWidget {
-  const _EstimatedCompletionTime({super.key});
+  const _EstimatedCompletionTime();
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +49,8 @@ class _EstimatedCompletionTime extends StatelessWidget {
     if (estimatedCompletionTime == null) return const SizedBox();
 
     return Text(
-      'Estimated completion time: ${estimatedCompletionTime.inMinutes} min',
-      style: const TextStyle(
-        color: AppColors.whiteEEF1,
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-      ),
+      Translations.of(context).order_estimated_completion_time('${estimatedCompletionTime.inMinutes} min'),
+      style: Theme.of(context).textTheme.bodySmall,
     );
   }
 }

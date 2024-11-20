@@ -1,6 +1,6 @@
 import 'package:drink_ordering_app/common/app_bar/app_bar_button.dart';
+import 'package:drink_ordering_app/l10n/translations.dart';
 import 'package:drink_ordering_app/routing/app_navigator.dart';
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class MyOrderAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,20 +16,20 @@ class MyOrderAppBar extends StatelessWidget implements PreferredSizeWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16) + const EdgeInsets.only(top: 8),
         child: Row(
           children: [
-            const Expanded(
+            Expanded(
               child: Text(
-                'My order',
-                style: TextStyle(fontSize: 38, color: AppColors.whiteEEF1),
+                Translations.of(context).order_title,
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
             AppBarButton(
               backgroundColor: Colors.transparent,
-              border: Border.all(color: AppColors.grey5050, width: 1),
-              icon: const RotationTransition(
-                turns: AlwaysStoppedAnimation(45 / 360),
+              border: Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
+              icon: RotationTransition(
+                turns: const AlwaysStoppedAnimation(45 / 360),
                 child: Icon(
                   Icons.add_rounded,
-                  color: AppColors.orangeF5A6,
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
               onTap: () => AppNavigator.pop(context),

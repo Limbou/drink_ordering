@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class OrderPageTransition extends StatefulWidget {
@@ -32,7 +31,7 @@ class _OrderPageTransitionState extends State<OrderPageTransition> {
                 animation: widget.animation,
                 innerRadius: 0,
                 outerRadius: diagonal,
-                color: AppColors.orangeFFAE,
+                color: Theme.of(context).colorScheme.onSecondaryFixed,
                 onFirstPartComplete: () => setState(() {
                   _showTargetPage = true;
                 }),

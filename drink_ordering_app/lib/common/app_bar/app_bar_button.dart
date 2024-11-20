@@ -1,4 +1,3 @@
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppBarButton extends StatelessWidget {
@@ -22,10 +21,10 @@ class AppBarButton extends StatelessWidget {
     final badgeCount = this.badgeCount ?? 0;
 
     return Badge.count(
-      backgroundColor: AppColors.white,
-      textColor: AppColors.grey3333,
-      count: badgeCount,
+      backgroundColor: Theme.of(context).colorScheme.onPrimary,
+      textStyle: Theme.of(context).textTheme.titleSmall,
       padding: const EdgeInsets.all(4),
+      count: badgeCount,
       offset: const Offset(-4, -2),
       isLabelVisible: badgeCount > 0,
       child: GestureDetector(

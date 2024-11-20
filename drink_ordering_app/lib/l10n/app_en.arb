@@ -1,0 +1,25 @@
+{
+  "company_open_now": "Open now",
+  "company_tab_bar_order": "Order",
+  "company_tab_bar_info": "Info",
+  "company_tab_bar_location": "Location",
+  "company_tab_bar_coming_soon": "Coming Soon!",
+  "company_menu": "Menu",
+  "company_search_hint": "What are you looking for?",
+  "order_title": "My order",
+  "order_ordering_from": "Ordering from",
+  "order_estimated_completion_time": "Estimated completion time: {time}",
+  "@order_estimated_completion_time": {
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "7 min"
+      }
+    }
+  },
+  "order_bag": "Bag",
+  "order_cart_empty": "Your cart is empty",
+  "order_cart_total": "Total",
+  "order_place_order": "Place order",
+  "order_confirmation": "Your order was placed successfully!"
+}

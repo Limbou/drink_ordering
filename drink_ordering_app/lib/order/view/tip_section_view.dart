@@ -13,7 +13,7 @@ class TipSectionView extends StatefulWidget {
 
 class _TipSectionViewState extends State<TipSectionView> {
   bool _isTipSelected = false;
-  Tip _selectedTip = Tip.small;
+  final Tip _selectedTip = Tip.small;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _TipSectionViewState extends State<TipSectionView> {
             DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: AppColors.grey5050, width: 1),
+                border: Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -38,23 +38,25 @@ class _TipSectionViewState extends State<TipSectionView> {
                         onChanged: _onTipSelected,
                         side: WidgetStateBorderSide.resolveWith(
                           (states) => BorderSide(
-                            color: states.contains(WidgetState.selected) ? AppColors.whiteEEF1 : AppColors.grey5050,
+                            color: states.contains(WidgetState.selected)
+                                ? Theme.of(context).colorScheme.onPrimary
+                                : Theme.of(context).colorScheme.primary,
                             width: 0.5,
                           ),
                         ),
                         fillColor: WidgetStateProperty.all(Colors.transparent),
-                        checkColor: AppColors.orangeFFAE,
+                        checkColor: Theme.of(context).colorScheme.onSecondaryFixed,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
                     ),
                     const SizedBox(width: 8),
-                    const Expanded(
+                    Expanded(
                       child: Text(
                         'Leave a tip',
                         style: TextStyle(
-                          color: AppColors.whiteEEF1,
+                          color: Theme.of(context).colorScheme.onPrimary,
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                         ),
@@ -134,7 +136,7 @@ class _TipTile<T> extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
-        color: isSelected ? AppColors.whiteEEF1 : AppColors.grey5050,
+        color: isSelected ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.primary,
       ),
       child: Padding(
         padding: const EdgeInsets.all(8),
@@ -154,7 +156,7 @@ class _TipTile<T> extends StatelessWidget {
             Text(
               tipAmount,
               style: TextStyle(
-                color: isSelected ? AppColors.grey5050 : AppColors.whiteEEF1,
+                color: isSelected ? AppColors.grey5050 : Theme.of(context).colorScheme.onPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),

@@ -1,7 +1,6 @@
 import 'package:drink_ordering_app/common/app_bar/app_bar_button.dart';
 import 'package:drink_ordering_app/order/cubit/index.dart';
 import 'package:drink_ordering_app/routing/app_navigator.dart';
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,10 +23,10 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             if (showBackButton)
               AppBarButton(
-                backgroundColor: AppColors.grey5050,
-                icon: const Icon(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                icon: Icon(
                   Icons.arrow_back_ios_new_rounded,
-                  color: AppColors.orangeF5A6,
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
                 onTap: () => AppNavigator.pop(context),
               ),
@@ -35,18 +34,14 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Text(
                 title ?? '',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: AppColors.whiteEEF1,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: Theme.of(context).textTheme.displayLarge,
               ),
             ),
             AppBarButton(
-              backgroundColor: AppColors.orangeFFAE,
-              icon: const Icon(
+              backgroundColor: Theme.of(context).colorScheme.onSecondaryFixed,
+              icon: Icon(
                 Icons.shopping_bag_outlined,
-                color: AppColors.grey3333,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               onTap: () => AppNavigator.goToOrderCartPage(context),
               badgeCount: context.select<OrderCubit, int>((cubit) => cubit.state.cart.entries.length),

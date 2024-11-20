@@ -1,5 +1,5 @@
+import 'package:drink_ordering_app/l10n/translations.dart';
 import 'package:drink_ordering_app/order/cubit/index.dart';
-import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,22 +21,14 @@ class PlaceOrderSectionView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Total',
-                      style: TextStyle(
-                        color: AppColors.whiteEEF1,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    Text(
+                      Translations.of(context).order_cart_total,
+                      style: Theme.of(context).textTheme.displayLarge,
                     ),
                     BlocBuilder<OrderCubit, OrderState>(
                       builder: (context, state) => Text(
                         state.order.totalPrice.displayable,
-                        style: const TextStyle(
-                          color: AppColors.whiteEEF1,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: Theme.of(context).textTheme.displayLarge,
                       ),
                     ),
                   ],
@@ -46,21 +38,18 @@ class PlaceOrderSectionView extends StatelessWidget {
                   builder: (context, state) => ElevatedButton(
                     onPressed: state.cart.isEmpty ? null : () => context.read<OrderCubit>().placeOrder(),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.orangeFFAE,
-                      foregroundColor: AppColors.whiteEEF1,
-                      disabledBackgroundColor: AppColors.grey5050,
-                      disabledForegroundColor: AppColors.grey9999,
-                      textStyle: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      backgroundColor: Theme.of(context).colorScheme.onSecondaryFixed,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                      disabledBackgroundColor: Theme.of(context).colorScheme.primary,
+                      disabledForegroundColor: Theme.of(context).colorScheme.surface,
+                      textStyle: Theme.of(context).textTheme.bodyMedium,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                       minimumSize: const Size.fromHeight(60),
                       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                     ),
-                    child: const Text('Place Order'),
+                    child: Text(Translations.of(context).order_place_order),
                   ),
                 ),
               ],
