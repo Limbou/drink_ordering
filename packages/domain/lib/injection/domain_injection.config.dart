@@ -11,6 +11,8 @@
 import 'package:domain/company/use_case/get_company_details_use_case.dart'
     as _i360;
 import 'package:domain/domain.dart' as _i494;
+import 'package:domain/order/use_cases/get_exchange_rates_use_case.dart'
+    as _i560;
 import 'package:domain/order/use_cases/submit_order_use_case.dart' as _i670;
 import 'package:domain/product/use_case/get_products_use_case.dart' as _i349;
 import 'package:get_it/get_it.dart' as _i174;
@@ -31,6 +33,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i360.GetCompanyDetailsUseCase(gh<_i494.CompanyRepository>()));
     gh.factory<_i670.SubmitOrderUseCase>(
         () => _i670.SubmitOrderUseCase(gh<_i494.OrderRepository>()));
+    gh.factory<_i560.GetExchangeRatesUseCase>(
+        () => _i560.GetExchangeRatesUseCase(gh<_i494.OrderRepository>()));
     gh.factory<_i349.GetProductsUseCase>(
         () => _i349.GetProductsUseCase(gh<_i494.ProductsRepository>()));
     return this;

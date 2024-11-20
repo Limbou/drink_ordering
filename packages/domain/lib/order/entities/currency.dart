@@ -1,4 +1,6 @@
-abstract base class Currency {
+import 'package:equatable/equatable.dart';
+
+abstract base class Currency extends Equatable {
   final String code;
   final String name;
   final String symbol;
@@ -10,6 +12,9 @@ abstract base class Currency {
   });
 
   String format(String amount);
+
+  @override
+  List<Object?> get props => [code, name, symbol];
 }
 
 final class CurrencyUsd extends Currency {

@@ -14,6 +14,13 @@ final class Money {
     this.currency = const CurrencyUsd(),
   }) : amount = (amount * 100).toInt();
 
+  Money withNewCurrency(Currency currency, Map<Currency, double> exchangeRates) {
+    final oldExchangeRate = exchangeRates[this.currency] ?? 1.0;
+    final newExchangeRate = exchangeRates[currency] ?? 1.0;
+    final newAmount = (amount / oldExchangeRate * newExchangeRate).round();
+    return Money._(amount: newAmount, currency: currency);
+  }
+
   String get displayable {
     final amountString = (amount / 100).toStringAsFixed(2);
     return currency.format(amountString);
@@ -42,6 +49,6 @@ final class Money {
   }
 
   Money fraction(double fraction) {
-    return Money._(amount: (amount * fraction).toInt(), currency: currency);
+    return Money._(amount: (amount * fraction).round(), currency: currency);
   }
 }

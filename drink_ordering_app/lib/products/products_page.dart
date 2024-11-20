@@ -2,6 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:drink_ordering_app/common/widgets/index.dart';
 import 'package:drink_ordering_app/company_details/views/tab_bar/company_tab_bar.dart';
 import 'package:drink_ordering_app/injection/main_injection.dart';
+import 'package:drink_ordering_app/order/index.dart';
 import 'package:drink_ordering_app/products/index.dart';
 import 'package:drink_ordering_app/products/widgets/product_tile.dart';
 import 'package:drink_ordering_app/theme/app_assets.dart';
@@ -27,22 +28,28 @@ class ProductsPage extends StatelessWidget {
         title: companyName,
         gradientStartFraction: 0.2,
         background: Image.asset(AppAssets.barBackground),
-        body: BlocConsumer<ProductsCubit, ProductsState>(
-          listener: (context, state) {
-            if (state is ProductsStateError) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
-            }
-          },
-          builder: (context, state) {
-            return switch (state) {
-              ProductsStateLoading() => const Center(child: CircularProgressIndicator()),
-              ProductsStateError(message: final message) => Center(child: Text(message)),
-              ProductsStateLoaded(products: final products) => _ProductsPageBody(
-                  categoryName: categoryName,
-                  products: products,
-                ),
-            };
-          },
+        body: BlocListener<OrderCubit, OrderState>(
+          listener: (context, state) => context.read<ProductsCubit>().changeCurrency(
+                state.order.currency,
+                state.exchangeRates,
+              ),
+          child: BlocConsumer<ProductsCubit, ProductsState>(
+            listener: (context, state) {
+              if (state is ProductsStateError) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+              }
+            },
+            builder: (context, state) {
+              return switch (state) {
+                ProductsStateLoading() => const Center(child: CircularProgressIndicator()),
+                ProductsStateError(message: final message) => Center(child: Text(message)),
+                ProductsStateLoaded(products: final products) => _ProductsPageBody(
+                    categoryName: categoryName,
+                    products: products,
+                  ),
+              };
+            },
+          ),
         ),
       ),
     );
@@ -88,12 +95,21 @@ class _ProductsList extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 32),
-          child: Text(
-            categoryName,
-            style: const TextStyle(
-              fontSize: 42,
-              color: AppColors.whiteEEF1,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                categoryName,
+                style: const TextStyle(
+                  fontSize: 42,
+                  color: AppColors.whiteEEF1,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(right: 16),
+                child: CurrencySelector(),
+              ),
+            ],
           ),
         ),
         Expanded(

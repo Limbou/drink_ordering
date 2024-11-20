@@ -20,4 +20,15 @@ final class Product extends Equatable {
 
   @override
   List<Object> get props => [id, name, price, alcoholPercentage, volume, imageName];
+
+  Product withNewCurrency(Currency currency, Map<Currency, double> exchangeRates) {
+    return Product(
+      id: id,
+      name: name,
+      price: price.withNewCurrency(currency, exchangeRates),
+      alcoholPercentage: alcoholPercentage,
+      volume: volume,
+      imageName: imageName,
+    );
+  }
 }

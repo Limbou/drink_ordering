@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => getIt<OrderCubit>()),
+        BlocProvider(create: (_) => getIt<OrderCubit>()..init()),
       ],
       child: MaterialApp.router(
         title: 'Drink Ordering',

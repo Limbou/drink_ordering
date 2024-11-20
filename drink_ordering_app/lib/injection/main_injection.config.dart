@@ -29,10 +29,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i865.CompanyDetailsCubit>(
         () => _i865.CompanyDetailsCubit(gh<_i494.GetCompanyDetailsUseCase>()));
+    gh.factory<_i173.OrderCubit>(() => _i173.OrderCubit(
+          gh<_i494.SubmitOrderUseCase>(),
+          gh<_i494.GetExchangeRatesUseCase>(),
+        ));
     gh.factory<_i676.ProductsCubit>(
         () => _i676.ProductsCubit(gh<_i494.GetProductsUseCase>()));
-    gh.factory<_i173.OrderCubit>(
-        () => _i173.OrderCubit(gh<_i494.SubmitOrderUseCase>()));
     return this;
   }
 }

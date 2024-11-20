@@ -3,10 +3,13 @@ import 'package:equatable/equatable.dart';
 
 final class Cart extends Equatable {
   final Map<String, CartEntry> _entriesMap;
+  final Currency currency;
 
-  const Cart._(this._entriesMap);
+  const Cart._(this._entriesMap, this.currency);
 
-  const Cart.empty() : _entriesMap = const {};
+  const Cart.empty()
+      : _entriesMap = const {},
+        currency = const CurrencyUsd();
 
   @override
   List<Object> get props => [_entriesMap];
@@ -17,10 +20,10 @@ final class Cart extends Equatable {
 
   Money get total {
     if (_entriesMap.isEmpty) {
-      return Money.fromDouble(amount: 0);
+      return Money.fromDouble(amount: 0, currency: currency);
     }
     return entries.fold(
-      Money.fromDouble(amount: 0, currency: entries.first.product.price.currency),
+      Money.fromDouble(amount: 0, currency: currency),
       (total, entry) => total + entry.totalPrice,
     );
   }
@@ -30,7 +33,7 @@ final class Cart extends Equatable {
   Cart addProduct(Product product) {
     final entries = Map<String, CartEntry>.from(_entriesMap);
     entries.update(product.id, (entry) => entry.increment(), ifAbsent: () => CartEntry.newEntry(product: product));
-    return Cart._(entries);
+    return Cart._(entries, currency);
   }
 
   Cart removeSingleProduct(String productId) {
@@ -44,18 +47,23 @@ final class Cart extends Equatable {
     } else {
       entries[productId] = entry.decrement();
     }
-    return Cart._(entries);
+    return Cart._(entries, currency);
   }
 
   Cart removeProduct(String productId) {
     final entries = Map<String, CartEntry>.from(_entriesMap);
     entries.remove(productId);
-    return Cart._(entries);
+    return Cart._(entries, currency);
   }
 
   int getQuantity(String productId) {
     final entry = _entriesMap[productId];
     return entry?.quantity ?? 0;
+  }
+
+  Cart withNewCurrency(Currency currency, Map<Currency, double> exchangeRates) {
+    final entries = _entriesMap.map((key, value) => MapEntry(key, value.withNewCurrency(currency, exchangeRates)));
+    return Cart._(entries, currency);
   }
 }
 
@@ -76,6 +84,10 @@ final class CartEntry extends Equatable {
 
   CartEntry decrement() {
     return CartEntry._(product: product, quantity: quantity - 1);
+  }
+
+  CartEntry withNewCurrency(Currency currency, Map<Currency, double> exchangeRates) {
+    return CartEntry._(product: product.withNewCurrency(currency, exchangeRates), quantity: quantity);
   }
 
   Money get totalPrice => product.price * quantity;

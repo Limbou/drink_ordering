@@ -1,4 +1,4 @@
-import 'package:drink_ordering_app/order/cubit/index.dart';
+import 'package:drink_ordering_app/order/index.dart';
 import 'package:drink_ordering_app/order/view/cart_entry_tile.dart';
 import 'package:drink_ordering_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +12,21 @@ class CartContentView extends StatelessWidget {
     return SliverMainAxisGroup(
       slivers: [
         const SliverPadding(
-          padding: EdgeInsets.only(bottom: 16),
+          padding: EdgeInsets.only(bottom: 16, right: 16),
           sliver: SliverToBoxAdapter(
-            child: Text(
-              'BAG',
-              style: TextStyle(
-                color: AppColors.grey9999,
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'BAG',
+                  style: TextStyle(
+                    color: AppColors.grey9999,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                CurrencySelector(),
+              ],
             ),
           ),
         ),

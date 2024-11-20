@@ -18,6 +18,16 @@ final class PurchaseOrder {
 
   Money get totalPrice => cart.total + (cart.total.fraction(tip?.value ?? 0.0));
 
+  Currency get currency => cart.currency;
+
+  PurchaseOrder withNewCurrency(Currency currency, Map<Currency, double> exchangeRates) {
+    return PurchaseOrder(
+      cart: cart.withNewCurrency(currency, exchangeRates),
+      company: company,
+      tip: tip,
+    );
+  }
+
   PurchaseOrder copyWith({
     Cart? cart,
     Company? company,

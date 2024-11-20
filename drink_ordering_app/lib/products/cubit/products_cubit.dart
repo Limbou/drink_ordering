@@ -18,4 +18,12 @@ final class ProductsCubit extends Cubit<ProductsState> {
       emit(ProductsStateError(e.toString()));
     }
   }
+
+  void changeCurrency(Currency currency, Map<Currency, double>? exchangeRates) {
+    final state = this.state;
+    if (exchangeRates == null || state is! ProductsStateLoaded) return;
+
+    final products = state.products.map((product) => product.withNewCurrency(currency, exchangeRates)).toList();
+    emit(ProductsStateLoaded(products));
+  }
 }
