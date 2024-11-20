@@ -4,6 +4,7 @@ import 'package:drink_ordering_app/company_details/views/tab_bar/company_tab_bar
 import 'package:drink_ordering_app/injection/main_injection.dart';
 import 'package:drink_ordering_app/order/index.dart';
 import 'package:drink_ordering_app/products/index.dart';
+import 'package:drink_ordering_app/products/widgets/paged_list_view.dart';
 import 'package:drink_ordering_app/products/widgets/product_tile.dart';
 import 'package:drink_ordering_app/theme/app_assets.dart';
 import 'package:flutter/material.dart';
@@ -109,13 +110,19 @@ class _ProductsList extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView.separated(
+          child: PagedListView(
             itemCount: products.length,
             itemBuilder: (context, index) {
               final product = products[index];
               return ProductTile(key: Key(product.id), product: product);
             },
             separatorBuilder: (_, __) => const SizedBox(height: 32),
+            onLoadMore: () => context.read<ProductsCubit>().loadMore(),
+            isLoadingMore: context.select<ProductsCubit, bool>((cubit) => cubit.state is ProductsStateLoadingMore),
+            isLastPage: context.select<ProductsCubit, bool>((cubit) {
+              final state = cubit.state;
+              return state is ProductsStateLoaded && state.pagingKey.isLast;
+            }),
           ),
         ),
       ],

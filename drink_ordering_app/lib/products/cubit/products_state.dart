@@ -1,17 +1,51 @@
 import 'package:domain/domain.dart';
 
-sealed class ProductsState {}
+sealed class ProductsState {
+  const ProductsState(this.companyName, this.categoryName);
 
-class ProductsStateLoading extends ProductsState {}
+  final String? companyName;
+  final String? categoryName;
+}
+
+class ProductsStateLoading extends ProductsState {
+  ProductsStateLoading(super.companyName, super.categoryName);
+}
 
 class ProductsStateError extends ProductsState {
   final String message;
 
-  ProductsStateError(this.message);
+  ProductsStateError(super.companyName, super.categoryName, this.message);
 }
 
 class ProductsStateLoaded extends ProductsState {
   final List<Product> products;
+  final PagingKey pagingKey;
 
-  ProductsStateLoaded(this.products);
+  ProductsStateLoaded(
+    super.companyName,
+    super.categoryName,
+    this.products,
+    this.pagingKey,
+  );
+}
+
+class ProductsStateLoadingMore extends ProductsStateLoaded {
+  ProductsStateLoadingMore(
+    super.products,
+    super.pagingKey,
+    super.companyName,
+    super.categoryName,
+  );
+}
+
+class ProductsStateErrorLoadingMore extends ProductsStateLoaded {
+  final String message;
+
+  ProductsStateErrorLoadingMore(
+    super.products,
+    super.pagingKey,
+    super.companyName,
+    super.categoryName,
+    this.message,
+  );
 }

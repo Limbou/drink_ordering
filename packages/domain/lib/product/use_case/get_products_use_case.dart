@@ -7,7 +7,7 @@ final class GetProductsUseCase {
 
   GetProductsUseCase(this._productsRepository);
 
-  Future<List<Product>> call({
+  Future<ProductsResponse> call({
     required String companyName,
     required String categoryName,
     int? page,

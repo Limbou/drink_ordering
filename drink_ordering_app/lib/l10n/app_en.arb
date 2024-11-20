@@ -21,5 +21,6 @@
   "order_cart_empty": "Your cart is empty",
   "order_cart_total": "Total",
   "order_place_order": "Place order",
-  "order_confirmation": "Your order was placed successfully!"
+  "order_confirmation": "Your order was placed successfully!",
+  "list_no_more_items": "No more items"
 }
