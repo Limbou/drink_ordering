@@ -63,3 +63,14 @@ By using theme colors and fonts app is ready to support light mode. Just introdu
 
 ### 3. Multi language support
 By using intl and flutter_localizations, the app is ready to support multiple languages. To add a new one, create a new arb file with matching keys and translations for a given language. Then regenerate the translations config using `flutter pub get`  and you're all set.
+
+
+## Limitations
+
+### 1. Page transition between company details page and products list is missing
+
+I just run out of time to implement it. I would use a custom page route with addition of regular fade/translate animations on specific widgets to achieve this.
+
+### 2. Order confirmation dialog could look better
+
+Same reason as above, the dialog could use a little bit of polish to make it look better.
