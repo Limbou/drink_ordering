@@ -49,7 +49,9 @@ class PlaceOrderSectionView extends StatelessWidget {
                       minimumSize: const Size.fromHeight(60),
                       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                     ),
-                    child: Text(Translations.of(context).order_place_order),
+                    child: state is OrderStateOrdering
+                        ? const SizedBox.square(dimension: 16, child: CircularProgressIndicator(strokeWidth: 2))
+                        : Text(Translations.of(context).order_place_order),
                   ),
                 ),
               ],

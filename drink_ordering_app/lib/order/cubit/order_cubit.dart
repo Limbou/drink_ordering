@@ -8,7 +8,7 @@ final class OrderCubit extends Cubit<OrderState> {
   OrderCubit(
     this._submitOrderUseCase,
     this._getExchangeRatesUseCase,
-  ) : super(OrderStateInitial(PurchaseOrder.empty(), null));
+  ) : super(OrderStateInitial(const PurchaseOrder.empty(), null));
 
   final SubmitOrderUseCase _submitOrderUseCase;
   final GetExchangeRatesUseCase _getExchangeRatesUseCase;
@@ -89,5 +89,9 @@ final class OrderCubit extends Cubit<OrderState> {
     } catch (e) {
       emit(OrderStateFailed(state.order, state.exchangeRates, e.toString()));
     }
+  }
+
+  void clearOrder() {
+    emit(OrderStateInitial(const PurchaseOrder.empty(), state.exchangeRates));
   }
 }
